@@ -42,12 +42,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Configuration de Mongoose
 
 mongoose.connect('mongodb+srv://Arthur:motdepasse@cluster0.kwfzfqx.mongodb.net/blog?retryWrites=true&w=majority', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 
+
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+    console.log('Connexion à la base de données MongoDB établie avec succès');
+});
 const routes = require('./routes/index');
 app.use('/', routes);
 
