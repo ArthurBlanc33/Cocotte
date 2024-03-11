@@ -1,0 +1,29 @@
+<!-- views/pages/dashboard.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); -%>
+        <title>Tableau de bord</title>
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header'); -%>
+    </header>
+
+    <main>
+        <h2>Tableau de bord</h2>
+        <p>Identifiant de l'utilisateur :
+            <%= userId %>
+        </p>
+        <a href="/logout">Déconnexion</a>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); -%>
+    </footer>
+</body>
+
+</html>

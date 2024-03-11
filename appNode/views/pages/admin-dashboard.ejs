@@ -1,0 +1,73 @@
+<!-- admin-dashboard.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); -%>
+        <title>Tableau de bord administrateur</title>
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header'); -%>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            <h2>Tableau de bord administrateur</h2>
+            <!-- Ajoutez ici des fonctionnalités spécifiques pour les administrateurs -->
+            <p>Bienvenue, administrateur</p>
+
+            <div class="container mt-5">
+                <h2>Liste des articles</h2>
+                <p>
+                    <a href="/create" class="btn btn-primary">Créer un nouvel article</a>
+                </p>
+
+                <!-- Ajout du bouton de déconnexion -->
+                <p>
+                    <a href="/logout" class="btn btn-danger">Se déconnecter</a>
+                </p>
+
+                <% if (articles && articles.length > 0) { %>
+                    <ul class="list-group">
+                        <% articles.forEach(article => { %>
+                            <li class="list-group-item">
+                                <h5>
+                                    <a href="/article-details/<%= article._id %>">
+                                        <%= article.title %>
+                                    </a>
+                                </h5>
+                                <p>
+                                    <% if (article.mode === "maths") { %>
+                                        Mathématiques
+                                        <% } else { %>
+                                            Cuisine
+                                            <% } %>
+                                </p>
+                                <p>
+                                    <%= article.content %>
+                                </p>
+                                <p><strong>Hashtags:</strong>
+                                    <%= article.hashtags %>
+                                </p>
+                                <!-- Bouton Supprimer -->
+                                <form method="POST" action="/delete-article/<%= article._id %>" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </li>
+                            <% }); %>
+                    </ul>
+                    <% } else { %>
+                        <p>Aucun article disponible.</p>
+                        <% } %>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); -%>
+    </footer>
+</body>
+
+</html>

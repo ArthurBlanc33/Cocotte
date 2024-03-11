@@ -1,0 +1,58 @@
+<!-- views/pages/articles.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <script src="../js/script.js" defer></script>
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+
+    </header>
+
+    <div class="container mt-5">
+        <h2>Liste des articles</h2>
+        <% if (articles && articles.length > 0) { %>
+            <% articles.forEach(article => { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/article-details/<%= article._id %>">
+                                <%= article.title %>
+
+                            </a>
+                        </h5>
+                        <p class="card-text">
+                            <% if (article.mode === "maths") { %>
+                                <p>Mathématiques</p>
+                                <% } else { %>
+                                    <p>Cuisine</p>
+                                    <% } %>
+                        </p>
+
+                        <p class="card-text">
+                            <%= article.content %>
+                        </p>
+                        <p class="card-text"><strong>Hashtags:</strong>
+                            <%= article.hashtags %>
+                        </p>
+
+                    </div>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <p>Aucun article disponible.</p>
+                        <% } %>
+    </div>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

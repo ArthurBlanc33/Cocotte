@@ -1,0 +1,52 @@
+<!-- article-details.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); -%>
+        <link rel="stylesheet" href="../css/style.css">
+        <!-- Assurez-vous d'inclure votre fichier de styles -->
+        <script src="../js/script.js" defer></script>
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header'); -%>
+    </header>
+    <main>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">
+                <%= article.title %>
+            </h2>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-subtitle mb-3 text-muted">
+                        <%= article.mode %>
+                    </p>
+                    <p class="card-text">
+                        <%= article.content %>
+                    </p>
+                    <p class="card-text"><strong>Hashtags:</strong>
+                        <%= article.hashtags %>
+                    </p>
+
+                    <div class="card">
+                        <% if (article.imagePath) { %>
+                            <img src="/images/<%= path.basename(article.imagePath) %>" class="card-img-top w-25 h-25" alt="Image de l'article">
+                            <% } %>
+                    </div>
+
+                </div>
+
+                <p class="card-text">
+                    <%= article.date.toLocaleDateString() %>
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer'); -%>
+    </footer>
+</body>
+
+</html>
